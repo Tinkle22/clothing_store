@@ -1,0 +1,430 @@
+/* Shop Page Specific CSS */
+
+.shop-container {
+    padding: 2rem 0;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    .shop-container {
+        padding: 3rem 4rem;
+    }
+}
+
+/* Breadcrumb & Header */
+.shop-breadcrumb {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.shop-breadcrumb a {
+    color: #444;
+}
+
+.shop-breadcrumb a:hover {
+    color: #111;
+}
+
+.shop-title-m {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    color: #111;
+    letter-spacing: -0.02em;
+}
+
+/* Categories Carousel */
+.shop-categories-wrap {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.shop-categories-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+.shop-categories-wrap {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.shop-category-card {
+    flex-shrink: 0;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .shop-category-card {
+        width: 220px;
+    }
+}
+
+.shop-category-img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background-color: #f6f6f6;
+}
+
+.shop-category-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.shop-category-card:hover .shop-category-img-wrap img {
+    transform: scale(1.05);
+}
+
+.shop-category-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #111;
+}
+
+/* Layout */
+.shop-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .shop-layout {
+        flex-direction: row;
+        gap: 4rem;
+    }
+}
+
+/* Sidebar Filters */
+.shop-sidebar {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .shop-sidebar {
+        width: 250px;
+        flex-shrink: 0;
+    }
+}
+
+.filter-group {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1.5rem;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111;
+}
+
+.filter-icon {
+    transition: transform 0.3s ease;
+    width: 16px;
+    height: 16px;
+    color: #666;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filter-options.hidden {
+    display: none;
+}
+
+.filter-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    transition: color 0.2sease;
+}
+
+.filter-checkbox-label:hover {
+    color: #111;
+}
+
+.filter-checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked {
+    background-color: #111;
+    border-color: #111;
+}
+
+.filter-checkbox-label input[type="checkbox"]:checked::after {
+    content: '';
+    width: 0.4rem;
+    height: 0.7rem;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0.15rem;
+}
+
+/* Main Content */
+.shop-main {
+    flex: 1;
+}
+
+.shop-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .shop-controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.shop-results-count {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.shop-sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.shop-sort-label {
+    font-size: 0.9rem;
+    color: #111;
+    font-weight: 500;
+}
+
+.shop-sort-select {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border: none;
+    background-color: #f6f6f6;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #111;
+    cursor: pointer;
+    outline: none;
+    font-weight: 500;
+    padding-right: 2rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+}
+
+.shop-view-toggles {
+    display: flex;
+    background-color: #f6f6f6;
+    border-radius: 999px;
+    padding: 0.25rem;
+}
+
+.view-toggle-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-toggle-btn.active {
+    background-color: #fff;
+    color: #111;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Active Filters */
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.active-filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background-color: #f6f6f6;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.active-filter-chip span {
+    color: #999;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.active-filter-chip span:hover {
+    color: #111;
+}
+
+.clear-filters-btn {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111;
+    margin-left: 0.5rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* Product Grid */
+.shop-product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 600px) {
+    .shop-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .shop-product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.shop-product-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+}
+
+.shop-product-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 1.25rem;
+    background-color: #f6f6f6;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.shop-product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.5s ease;
+}
+
+.shop-product-card:hover .shop-product-img-wrap img {
+    transform: scale(1.05);
+}
+
+.shop-product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #111;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 5;
+}
+
+.shop-product-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #111;
+    margin-bottom: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.shop-product-card:hover .shop-product-title {
+    color: #666;
+}
+
+.shop-product-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
+}
+
+/* Specific product styles missing from DB image paths */
+.img-fit-cover img {
+    object-fit: cover !important;
+    mix-blend-mode: normal !important;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 6rem 1rem;
+    background-color: #f9f9f9;
+    border-radius: 2rem;
+}
+
+.empty-state h3 {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: #888;
+    margin-bottom: 2rem;
+}

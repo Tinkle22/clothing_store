@@ -15,7 +15,7 @@ $categories = $catStmt->fetchAll();
 
 <!-- Hero Section (30% Height Carousel) -->
 <section class="hero-carousel-section mb-24">
-    <div class="carousel-container relative overflow-hidden" style="height: 30vh; position: relative; overflow: hidden;">
+    <div class="carousel-container relative overflow-hidden group" style="height: 30vh; position: relative; overflow: hidden;">
         <div class="carousel-track flex transition-transform duration-700 ease-in-out" style="display: flex; height: 100%; transition: transform 0.7s ease-in-out;">
             <!-- Slide 1 -->
             <div class="carousel-slide relative h-full" style="min-width: 100%; position: relative; height: 100%;">
@@ -40,6 +40,14 @@ $categories = $catStmt->fetchAll();
             </div>
         </div>
         
+        <!-- Hero Navigation Arrows -->
+        <button id="hero-prev" class="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-dark transition-all duration-300 transform hover:scale-110 opacity-0 group-hover:opacity-100 hidden md:flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button id="hero-next" class="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-dark transition-all duration-300 transform hover:scale-110 opacity-0 group-hover:opacity-100 hidden md:flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
         <!-- Navigation Dots -->
         <div class="absolute flex gap-3 z-30" style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 30;">
             <button class="carousel-dot" style="width: 8px; height: 8px; border-radius: 50%; border: none; background: white; cursor: pointer; transition: all 0.3s; opacity: 1; transform: scale(1.2);"></button>
@@ -57,12 +65,12 @@ $categories = $catStmt->fetchAll();
                 <h2 class="text-sm font-extrabold uppercase tracking-[0.2em] mb-0">Shop by Category</h2>
             </div>
             <!-- Carousel Controls -->
-            <div class="flex gap-4">
-                <button id="cat-prev" class="w-10 h-10 rounded-full border border-sand flex items-center justify-center hover:bg-dark hover:text-white transition group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-active:-translate-x-1"><path d="m15 18-6-6 6-6"/></svg>
+            <div class="flex gap-3">
+                <button id="cat-prev" class="w-12 h-12 rounded-full border border-sand bg-white flex items-center justify-center hover:bg-dark hover:text-white hover:border-dark transition-all duration-300 shadow-sm hover:shadow-md group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-0.5"><path d="m15 18-6-6 6-6"/></svg>
                 </button>
-                <button id="cat-next" class="w-10 h-10 rounded-full border border-sand flex items-center justify-center hover:bg-dark hover:text-white transition group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-active:translate-x-1"><path d="m9 18 6-6-6-6"/></svg>
+                <button id="cat-next" class="w-12 h-12 rounded-full border border-sand bg-white flex items-center justify-center hover:bg-dark hover:text-white hover:border-dark transition-all duration-300 shadow-sm hover:shadow-md group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
             </div>
         </div>
@@ -88,7 +96,7 @@ $categories = $catStmt->fetchAll();
 </section>
 
 <!-- All Products Section -->
-<section class="pb-24 bg-white w-full flex justify-center" style="display: flex; justify-content: center;">
+<section class="py-24 bg-white w-full flex justify-center mt-12" style="display: flex; justify-content: center;">
     <div class="container mx-auto">
         <div class="text-center mb-16 reveal flex flex-col items-center justify-center mx-auto" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <h2 class="text-2xl font-extrabold uppercase tracking-tight mb-2 text-center">Our Catalog</h2>
@@ -145,13 +153,38 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     heroDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => updateHero(index));
+        dot.addEventListener('click', () => {
+            updateHero(index);
+            resetAutoPlay();
+        });
     });
 
-    setInterval(() => {
+    const nextHero = () => {
         heroIndex = (heroIndex + 1) % heroDots.length;
         updateHero(heroIndex);
-    }, 5000);
+    };
+
+    const prevHero = () => {
+        heroIndex = (heroIndex - 1 + heroDots.length) % heroDots.length;
+        updateHero(heroIndex);
+    };
+
+    document.getElementById('hero-next').addEventListener('click', () => {
+        nextHero();
+        resetAutoPlay();
+    });
+
+    document.getElementById('hero-prev').addEventListener('click', () => {
+        prevHero();
+        resetAutoPlay();
+    });
+
+    let autoPlay = setInterval(nextHero, 5000);
+
+    const resetAutoPlay = () => {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(nextHero, 5000);
+    };
 
     // Category Carousel
     const catTrack = document.getElementById('cat-track');
